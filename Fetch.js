@@ -13,25 +13,35 @@ async function fetchData() {
     }
     fetchData();
   }
-
+ 
   document.addEventListener('DOMContentLoaded', () => {
-    const fetchButton = document.getElementById('fetch-dog');
-    const RandomDog = document.getElementById('RandomDog');
+  const fetchButton = document.getElementById('fetch-dog');
+  const RandomDog = document.getElementById('RandomDog');
+  const RandomDog2 = document.getElementById('RandomDog2');
   
-    fetchButton.addEventListener('click', async () => {
-      const data = await fetchData();
-      if (data && data.message) {
-        // Clear any previous image
-        RandomDog.innerHTML = '';
+  fetchButton.addEventListener('click', async () => {
+    // Fetch two random dog images
+    const data1 = await fetchData();
+    const data2 = await fetchData();
   
-        // Create a new image element
-        const img = document.createElement('img');
-        img.src = data.message; // Use the URL from the API response
-        img.alt = 'Random Dog';
+    if (data1 && data1.message && data2 && data2.message) {
+      // Clear any previous images
+      RandomDog.innerHTML = '';
+      RandomDog2.innerHTML = '';
   
-        // Add the image to the container
-        RandomDog.appendChild(img);
-        RandomDog2.appendChild(img);
-      }
-    });
+      // Create the first image element
+      const img1 = document.createElement('img');
+      img1.src = data1.message;
+      img1.alt = 'Random Dog 1';
+  
+      // Create the second image element
+      const img2 = document.createElement('img');
+      img2.src = data2.message;
+      img2.alt = 'Random Dog 2';
+  
+      // Add the images to their respective containers
+      RandomDog.appendChild(img1);
+      RandomDog2.appendChild(img2);
+    }
+  });
   });
