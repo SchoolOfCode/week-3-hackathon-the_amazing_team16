@@ -13,3 +13,25 @@ async function fetchData() {
     }
     fetchData();
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const fetchButton = document.getElementById('fetch-dog');
+    const RandomDog = document.getElementById('RandomDog');
+  
+    fetchButton.addEventListener('click', async () => {
+      const data = await fetchData();
+      if (data && data.message) {
+        // Clear any previous image
+        RandomDog.innerHTML = '';
+  
+        // Create a new image element
+        const img = document.createElement('img');
+        img.src = data.message; // Use the URL from the API response
+        img.alt = 'Random Dog';
+  
+        // Add the image to the container
+        RandomDog.appendChild(img);
+        RandomDog2.appendChild(img);
+      }
+    });
+  });
