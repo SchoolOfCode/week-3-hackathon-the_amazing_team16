@@ -1,20 +1,22 @@
 async function fetchData() {
     try {
       const Dog = await fetch('https://dog.ceo/api/breeds/image/random');
-      if (!Dog.ok) {
-        throw new Error(`HTTP error! status: ${Dog.status}`);
+        if (!Dog.ok) {
+          throw new Error(`HTTP error! status: ${Dog.status}`);
       }
       const data = await Dog.json();
       // Handle your data
-      return data;
-    } catch (error) {
-      console.error('Error fetching data:', error);
+          return data;
+        } catch (error) {
+        console.error('Error fetching data:', error);
       // Handle any errors
     }
     fetchData();
   }
  
   document.addEventListener('DOMContentLoaded', () => {
+
+    //Create a reference to elements to be used
   const fetchButton = document.getElementById('fetch-dog');
   const RandomDog = document.getElementById('RandomDog');
   const RandomDog2 = document.getElementById('RandomDog2');
